@@ -1,0 +1,59 @@
+#pokemonsDiv {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.pokemon-card {
+    background: rgb(245, 236, 236);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pokemon-card p {
+    font-family: sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3 ease;
+}
+
+.modal {
+    background-color: white;
+    width: clamp(350px, 30%, 450px);
+    height: 80%;
+    max-width: 90vw;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+body:has(.modal.show) :is(.overlay, .modal) {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
